@@ -2,6 +2,8 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import gzip
+import pickle
 
 # Page configuration
 st.set_page_config(
@@ -11,7 +13,8 @@ st.set_page_config(
 )
 
 # Load trained Random Forest model
-model = joblib.load("random_forest.pkl")
+with gzip.open("random_forest.pkl.gz", "rb") as f:
+    model = pickle.load(f)
 
 # Title
 st.title("🏥 Healthcare Synthetic Data Project")
